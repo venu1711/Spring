@@ -1,0 +1,32 @@
+-- 1. For connecting to a database
+--DROP TABLE IF EXISTS widgets;
+--CREATE TABLE widgets(
+--    id BIGINT NOT NULL AUTO_INCREMENT,
+--    name VARCHAR(100) NOT NULL,
+--    description TEXT,
+--    version INT NOT NULL,
+--    PRIMARY KEY (id)
+--);
+
+
+-- 2. For implementing DAO
+DROP TABLE IF EXISTS books;
+DROP TABLE IF EXISTS authors;
+
+CREATE TABLE authors (
+    id        BIGINT NOT NULL AUTO_INCREMENT,
+    name      TEXT,
+    age       INT,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE books (
+    isbn       VARCHAR(64) NOT NULL,
+    title      TEXT,
+    author_id  BIGINT,
+    PRIMARY KEY (isbn),
+    CONSTRAINT fk_author
+    FOREIGN KEY (author_id)
+    REFERENCES authors(id)
+    ON UPDATE CASCADE
+);

@@ -1,0 +1,4 @@
+1. How to connect a database using schema and data sql scripts
+2. How to set up JDBC Template for the persistence layer
+3. What are DAOs
+4. How to set up a DAO

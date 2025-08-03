@@ -1,0 +1,42 @@
+package com.venu.database;
+
+import lombok.extern.java.Log;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import javax.sql.DataSource;
+import java.util.logging.Logger;
+
+/** 1. For Establishing connection to database
+//@SpringBootApplication
+
+@Log
+public class DatabaseApplication implements CommandLineRunner {
+	private final DataSource dataSource;
+
+	public DatabaseApplication(DataSource dataSource){this.dataSource = dataSource;}
+
+
+	public static void main(String[] args) {
+		SpringApplication.run(DatabaseApplication.class, args);
+	}
+
+	@Override
+	public void run(final String... args) throws Exception {
+		final Logger log = Logger.getLogger(DatabaseApplication.class.getName());
+		log.info("DataSource: "+dataSource.toString());
+		final JdbcTemplate restTemplate = new JdbcTemplate(dataSource);
+		restTemplate.execute("select 1");
+	}
+}
+ **/
+
+// 2. For setting up DAOs
+@SpringBootApplication
+class DataBaseApplication{
+	private final DataSource dataSource;
+
+    public DataBaseApplication(DataSource dataSource) {this.dataSource = dataSource;}
+}
