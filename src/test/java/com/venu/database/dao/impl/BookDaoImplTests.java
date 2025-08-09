@@ -1,6 +1,7 @@
 package com.venu.database.dao.impl;
 
 
+import com.venu.database.TestDataUtil;
 import com.venu.database.domain.Book;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,11 +25,7 @@ public class BookDaoImplTests {
 
     @Test
     public void testThatCreateBookGeneratesCorrectSql(){
-        Book book = Book.builder()
-                .isbn("1A")
-                .title("Harry Potter")
-                .authorId(1L)
-                .build();
+        Book book = TestDataUtil.createTestBook();
         underTest.create(book);
 
         verify(jdbcTemplate).update(
