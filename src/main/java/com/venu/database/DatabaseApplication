@@ -39,4 +39,8 @@ class DataBaseApplication{
 	private final DataSource dataSource;
 
     public DataBaseApplication(DataSource dataSource) {this.dataSource = dataSource;}
+
+	public static void main(String[] args) {
+		SpringApplication.run(DatabaseApplication.class, args);
+	}
 }
