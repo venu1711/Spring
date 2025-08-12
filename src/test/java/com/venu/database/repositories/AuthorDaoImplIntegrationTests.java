@@ -1,5 +1,5 @@
-package com.venu.database.dao.impl;
-
+package com.venu.database.repositories;
+/**
 import com.venu.database.TestDataUtil;
 import com.venu.database.domain.Author;
 import org.junit.jupiter.api.Test;
@@ -47,4 +47,25 @@ public class AuthorDaoImplIntegrationTests {
         assertThat(results).hasSize(3);
         assertThat(results).containsExactly(author1, author2, author3);
     }
+
+    @Test
+    public void testThatAuthorCanBeUpdated() {
+        Author author = TestDataUtil.createTestAuthorA();
+        underTest.create(author);
+        author.setName("UPDATED");
+        underTest.update(author.getId(),author);
+        Optional<Author> result = underTest.findOne(author.getId());
+        assertThat(result).isPresent();
+        assertThat(result.get()).isEqualTo(author);
+    }
+
+    @Test
+    public void testThatAuthorCanBeDeleted(){
+        Author author = TestDataUtil.createTestAuthorB();
+        underTest.create(author);
+        underTest.delete(author.getId());
+        Optional<Author> result = underTest.findOne(author.getId());
+        assertThat(result).isNotPresent();
+    }
 }
+ **/

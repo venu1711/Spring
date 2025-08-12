@@ -1,5 +1,6 @@
-package com.venu.database.dao.impl;
+package com.venu.database.repositories;
 
+/**
 import com.venu.database.TestDataUtil;
 import com.venu.database.dao.AuthorDao;
 import com.venu.database.domain.Author;
@@ -66,4 +67,31 @@ public class BookDaoImplIntegrationTests {
         assertThat(results).hasSize(3);
         assertThat(results).containsExactly(book1,book2,book3);
     }
+
+    @Test
+    public void testThatBookCanBeUpdated(){
+        Author author = TestDataUtil.createTestAuthorA();
+        authorDao.create(author);
+        Book book = TestDataUtil.createTestBookA();
+        book.setTitle("Max Verstappen");
+        underTest.create(book);
+
+        underTest.update(book.getIsbn(), book);
+        Optional<Book> result = underTest.findOne(book.getIsbn());
+        assertThat(result).isPresent();
+        assertThat(result.get()).isEqualTo(book);
+    }
+
+    @Test
+    public void testThatBookCanBeDeleted(){
+        Author author = TestDataUtil.createTestAuthorB();
+        authorDao.create(author);
+        Book book = TestDataUtil.createTestBookB();
+        book.setAuthorId(author.getId());
+        underTest.create(book);
+        underTest.delete(book.getIsbn());
+        Optional<Book> result = underTest.findOne(book.getIsbn());
+        assertThat(result).isNotPresent();
+    }
 }
+**/

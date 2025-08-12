@@ -76,3 +76,17 @@ DAO - Data Access Object
    - To reduce this DAO are classes injected in-between service and persistence layer.
    - These connect the Java Objects created in service layer to the entities in the persistence layer.
    - This helps to maintain code which is way less than before.
+
+# 4. JPA
+Java Persistence API
+
+## Note:
+    - Will be deleting Author DAOimplTests and BookDaoImplTests which can be done by JPA in an easier way.
+    - The AuthorDao exposes all the methods that are required to query the database.
+    - No need for unit tests for the DAO layer as it is not a business logic layer.
+
+## Purpose:
+   - JPA is a specification for accessing, persisting, and managing data between Java objects and relational databases.
+   - It provides a way to map Java objects to database tables and vice versa.
+   - JPA allows developers to work with databases using Java objects, reducing the need for boilerplate SQL code.
+

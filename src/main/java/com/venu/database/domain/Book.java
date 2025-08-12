@@ -1,6 +1,7 @@
 package com.venu.database.domain;
 
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,8 +11,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Entity
+@Table(name = "books")
 public class Book {
+    @Id
     private String isbn;
+
     private String title;
-    private Long authorId;
+
+    @ManyToOne(cascade = CascadeType.ALL) //When a book is saved, respective author is also saved
+    @JoinColumn(name = "author_id")
+    private Author author;
+    // The @ManyToOne annotation indicates that many books can be associated with one author.
 }
