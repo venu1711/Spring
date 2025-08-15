@@ -1,5 +1,5 @@
 package com.venu.database.repositories;
-/**
+
 import com.venu.database.TestDataUtil;
 import com.venu.database.domain.Author;
 import org.junit.jupiter.api.Test;
@@ -68,4 +68,3 @@ public class AuthorDaoImplIntegrationTests {
         assertThat(result).isNotPresent();
     }
 }
- **/
