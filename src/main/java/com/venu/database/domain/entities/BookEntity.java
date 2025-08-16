@@ -19,8 +19,8 @@ public class Book {
 
     private String title;
 
-    @ManyToOne(cascade = CascadeType.ALL) //When a book is saved, respective author is also saved
     @JoinColumn(name = "author_id")
+    @ManyToOne(cascade = CascadeType.ALL) //When a book is saved, respective author is also saved
     private Author author;
     // The @ManyToOne annotation indicates that many books can be associated with one author.
 }
