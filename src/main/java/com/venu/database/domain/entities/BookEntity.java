@@ -1,4 +1,4 @@
-package com.venu.database.domain;
+package com.venu.database.domain.entities;
 
 
 import jakarta.persistence.*;
@@ -13,14 +13,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name = "books")
-public class Book {
+public class BookEntity {
     @Id
     private String isbn;
 
     private String title;
 
     @JoinColumn(name = "author_id")
-    @ManyToOne(cascade = CascadeType.ALL) //When a book is saved, respective author is also saved
-    private Author author;
-    // The @ManyToOne annotation indicates that many books can be associated with one author.
+    @ManyToOne(cascade = CascadeType.ALL) //When a book is saved, respective authorEntity is also saved
+    private AuthorEntity author;
+    // The @ManyToOne annotation indicates that many books can be associated with one authorEntity.
 }

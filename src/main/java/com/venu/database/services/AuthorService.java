@@ -1,4 +1,16 @@
 package com.venu.database.services;
 
-public class AuthroService {
+import com.venu.database.domain.entities.AuthorEntity;
+import com.venu.database.domain.dto.AuthorDto;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface AuthorService {
+
+    AuthorEntity createAuthor(AuthorEntity authorEntity);
+
+    List<AuthorEntity> findAll();
+
+    Optional<AuthorEntity> findOne(Long id);
 }

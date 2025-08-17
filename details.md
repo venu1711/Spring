@@ -90,3 +90,10 @@ Java Persistence API
    - It provides a way to map Java objects to database tables and vice versa.
    - JPA allows developers to work with databases using Java objects, reducing the need for boilerplate SQL code.
 
+# 5. Creating REST APIs
+## Steps:
+1. Create a Controller Class:
+2. Then DTO
+3. Create a Service Class:
+4. Create a DAO Class:
+5. Create a Repository Interface:

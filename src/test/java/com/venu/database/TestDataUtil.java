@@ -1,7 +1,7 @@
 package com.venu.database;
 
-import com.venu.database.domain.Author;
-import com.venu.database.domain.Book;
+import com.venu.database.domain.entities.AuthorEntity;
+import com.venu.database.domain.entities.BookEntity;
 
 public final class TestDataUtil {
 
@@ -9,51 +9,51 @@ public final class TestDataUtil {
     }
 
 
-    public static Author createTestAuthorA() {
-        return Author.builder()
-                .id(1L)
+    public static AuthorEntity createTestAuthorA() {
+        return AuthorEntity.builder()
+//                .id(1L)
                 .name("Venu Madhav")
                 .age(20)
                 .build();
     }
 
-    public static Author createTestAuthorB() {
-        return Author.builder()
-                .id(2L)
+    public static AuthorEntity createTestAuthorB() {
+        return AuthorEntity.builder()
+//                .id(2L)
                 .name("Abhiram")
-                .age(22)
+                .age(52)
                 .build();
     }
 
-    public static Author createTestAuthorC() {
-        return Author.builder()
-                .id(3L)
+    public static AuthorEntity createTestAuthorC() {
+        return AuthorEntity.builder()
+//                .id(3L)
                 .name("Arun Kaushik")
-                .age(20)
+                .age(70)
                 .build();
     }
 
-    public static Book createTestBookA() {
-        return Book.builder()
+    public static BookEntity createTestBookA(final AuthorEntity authorEntity) {
+        return BookEntity.builder()
                 .isbn("1A")
                 .title("Harry Potter")
-                .authorId(1L)
+                .authorEntity(authorEntity)
                 .build();
     }
 
-    public static Book createTestBookB() {
-        return Book.builder()
+    public static BookEntity createTestBookB(final AuthorEntity authorEntity) {
+        return BookEntity.builder()
                 .isbn("1B")
                 .title("Percy jackson")
-                .authorId(1L)
+                .authorEntity(authorEntity)
                 .build();
     }
 
-    public static Book createTestBookC() {
-        return Book.builder()
+    public static BookEntity createTestBookC(final AuthorEntity authorEntity) {
+        return BookEntity.builder()
                 .isbn("1C")
                 .title("The Great Gatsby")
-                .authorId(1L)
+                .authorEntity(authorEntity)
                 .build();
     }
 }

@@ -1,4 +1,7 @@
 package com.venu.database.repositories;
 
-public interface BookRepository {
+import com.venu.database.domain.entities.BookEntity;
+import org.springframework.data.repository.CrudRepository;
+
+public interface BookRepository extends CrudRepository<BookEntity,String> {
 }
