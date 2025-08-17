@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -38,6 +39,30 @@ public class BookController {
         return bookEntities.stream()
                 .map(bookMapper::mapTo)
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping(path = "/books/{isbn}")
+    public ResponseEntity<BookDto> getBook(@PathVariable String isbn){
+        Optional<BookEntity> foundBook = bookService.findOne(isbn);
+        return foundBook.map(bookEntity -> {
+            BookDto bookDto = bookMapper.mapTo(bookEntity);
+            return new ResponseEntity<>(bookDto,HttpStatus.OK);
+        }).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @PatchMapping(path = "/books/{isbn}")
+    public ResponseEntity<BookDto> updateBook(
+            @PathVariable String isbn,
+            @RequestBody BookDto bookDto) {
+
+
+        if(!bookService.isExists(isbn)){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        BookEntity bookEntity = bookMapper.mapFrom(bookDto);
+        BookEntity updatedBook = bookService.update(isbn, bookEntity);
+        return new ResponseEntity<>(bookMapper.mapTo(updatedBook),HttpStatus.OK);
     }
 }
 

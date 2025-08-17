@@ -3,6 +3,7 @@ package com.venu.database.services.impl;
 import com.venu.database.domain.entities.AuthorEntity;
 import com.venu.database.repositories.AuthorRepository;
 import com.venu.database.services.AuthorService;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -33,5 +34,21 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public Optional<AuthorEntity> findOne(Long id) {
         return authorRepository.findById(id);
+    }
+
+    @Override
+    public boolean isExists(Long id) {
+        return authorRepository.existsById(id);
+    }
+
+    @Override
+    public AuthorEntity update(Long id, AuthorEntity authorEntity) {
+        authorEntity.setId(id);
+
+        return authorRepository.findById(id).map(existingAuthor -> {
+            Optional.ofNullable(authorEntity.getName()).ifPresent(existingAuthor::setName);
+            Optional.ofNullable(authorEntity.getAge()).ifPresent(existingAuthor::setAge);
+            return authorRepository.save(existingAuthor);
+        }).orElseThrow(() -> new RuntimeException("Author does not exist"));
     }
 }
